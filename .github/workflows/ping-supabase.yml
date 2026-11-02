@@ -1,12 +1,13 @@
 # Mantem o projeto Supabase (plano gratis) ativo: ele pausa apos ~1 semana sem uso.
 # Uso: no repositorio xxwigglexx/scripts substitua  .github/workflows/ping-supabase.yml  por este conteudo.
 # Antes, rode biblioteca\supabase\002_keepalive.sql no SQL Editor do Supabase (cria a funcao keepalive_ping).
-# 28/10/2026: o ping antigo (so leitura, a cada 3 dias) NAO impediu a pausa. Agora: TODO DIA e GRAVANDO no banco.
+# 28/10/2026: o ping antigo (so leitura, a cada 3 dias) NAO impediu a pausa. Agora: GRAVANDO no banco.
+# 02/11/2026: chegou aviso de "pouca atividade" mesmo assim; passou de 1x/dia para A CADA 6 HORAS.
 # Usa so a chave PUBLICA (a mesma que ja vai nos scripts). Pode ser disparado na mao (aba Actions > Run workflow).
 name: ping-supabase
 on:
   schedule:
-    - cron: "17 9 * * *"
+    - cron: "17 */6 * * *"
   workflow_dispatch:
 jobs:
   ping:
